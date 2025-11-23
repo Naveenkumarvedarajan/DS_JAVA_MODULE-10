@@ -1,33 +1,65 @@
-# Ex24 Shortest Path and Reachability in a Heritage Town using BFS
-## DATE:
+# Ex23 Breadth-First Search (BFS) Traversal of a City Junction Map
+## DATE: 22/11/25
 ## AIM:
-To design and implement a java program that, given a map of attractions in a heritage town connected by walking paths, recommends:
-The shortest number of paths (minimum hops) from a starting attraction to a target attraction.
-The number of reachable attractions from the same starting point using Breadth-First Search (BFS)
-
-
+To design and implement a java program to perform Breadth-First Search (BFS) traversal on a city’s junction map represented as a graph, and find all reachable locations from a given source junction.
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+1. Start the program.A
+2. Read two integers.
+3. Create an adjacency list g of size n.
+4. Repeat e times.
+5. Read the source node.
+6. Initialize a boolean array of size n, all set to false.
+7. Create an empty queue.
+8. Mark src as visited and enqueue it.
+9. Continue until all reachable nodes are processed.
+10. Stop the program.  
 
 ## Program:
 ```
 /*
-Program to determine Shortest Path and Reachability in a Heritage Town using BFS
-Developed by: 
-RegisterNumber:  
+Program to perform Breadth-First Search (BFS) traversal on a city’s junction map represented as a graph
+Developed by: Naveen Kumar V
+RegisterNumber:  212223230140
+import java.util.*;
+
+public class EmergencyRouteBFS {
+    public static void addEdge(List<List<Integer>> g, int u, int v) {
+        g.get(u).add(v);
+        g.get(v).add(u);
+    }
+
+    public static void bfs(List<List<Integer>> g, int src, boolean[] visited) {
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(src);
+        visited[src] = true;
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            System.out.print(curr + " ");
+            for (int neighbor : g.get(curr)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.offer(neighbor);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), e = sc.nextInt();
+        List<List<Integer>> g = new ArrayList<>();
+        for (int i = 0; i < n; i++) g.add(new ArrayList<>());
+        for (int i = 0; i < e; i++) addEdge(g, sc.nextInt(), sc.nextInt());
+        int src = sc.nextInt();
+        bfs(g, src, new boolean[n]);
+    }
+}
 */
 ```
 
 ## Output:
-
-
+<img width="323" height="201" alt="image" src="https://github.com/user-attachments/assets/11382da5-1102-4600-b909-c86687946817" />
 
 ## Result:
 The program has been successfully implemented and executed.
-It correctly computes:
-The shortest number of paths (minimum hops) between two attractions.
-The total number of reachable attractions from a given starting point using BFS traversal.
+It performs Breadth-First Search (BFS) traversal on a city junction map and correctly lists all reachable locations from the given source node.
